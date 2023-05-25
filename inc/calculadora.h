@@ -8,8 +8,6 @@ typedef struct calculadora_s * calculadora_t; //Genero un objeto del tipo candad
 
 typedef int (*funcion_t)(int, int);
 
-operacion_t BuscarOperacion(calculadora_t calculadora, char operador);
-
 calculadora_t CrearCalculadora(void);
 
 bool AgregarOperacion(calculadora_t calculadora, char operador, funcion_t funcion);

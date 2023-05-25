@@ -1,4 +1,5 @@
 #include "calculadora.h"
+#include <stdio.h>
 
 
 /** @brief Genero las funciones que tendra mi calculadora
@@ -19,8 +20,11 @@ int resta(int a, int b){
 int producto(int a, int b){
 	return a*b;
 }
+int division(int a, int b){
+	return a/b;
+}
 int main(void){
-	int resultado
+	int resultado=0;
 	calculadora_t calculadora= CrearCalculadora();
 	AgregarOperacion(calculadora,'+',suma);
 	AgregarOperacion(calculadora,'-',resta);

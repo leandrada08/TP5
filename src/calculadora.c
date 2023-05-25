@@ -2,13 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
-
 typedef struct operacion_s * operacion_t;
 
 
-struct calculadora_s{
+struct calculadora_s {
 	operacion_t operaciones;
 };
 
@@ -17,6 +14,9 @@ struct operacion_s {
 	funcion_t funcion;
 	operacion_t siguiente;
 };
+
+
+operacion_t BuscarOperacion(calculadora_t calculadora, char operador);
 
 
 /** Funcion verificada para hacer lo que necesitamos OK
@@ -43,7 +43,7 @@ operacion_t BuscarOperacion(calculadora_t calculadora, char operador){
 
 
 calculadora_t CrearCalculadora(void){ //Creo la calculadora de manera dinamica
-	calculadora_t result = malloc(sizoef(struct calculadora_s));
+	calculadora_t result = malloc(sizeof(struct calculadora_s));
 	if (result){
 		memset(result, 0, sizeof(struct calculadora_s)); //limpia la memoria que usara la calculadora
 	}
