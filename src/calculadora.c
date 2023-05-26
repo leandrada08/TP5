@@ -1,6 +1,9 @@
 #include "calculadora.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <string.h>
 
 typedef struct operacion_s * operacion_t;
 
@@ -29,12 +32,15 @@ operacion_t BuscarOperacion(calculadora_t calculadora, char operador){
 	//Hacer codigo para evitar error cuando la calculadora esta vacia
 	
 	operacion_t result = NULL; //<!Genero un puntero para devolver lo que necesito
-	for(operacion_t actual = calculadora->operaciones; actual->siguiente!=NULL; actual=actual->siguiente){//<! Recorro los operador como lista enlazadas hasta encontrar un nulo
-		if(actual->operador==operador){ //<! Verifico que sea el operador que busco
-			result=actual;//<! Guardo el operador que es igual al buscado
-			// Porque no devuelvo este valor?
+	operacion_t actual = calculadora->operaciones;
+	if(actual!=NULL){
+		for(actual;actual->siguiente!=NULL; actual=actual->siguiente){//<! Recorro los operador como lista enlazadas hasta encontrar un nulo
+			if(actual->operador==operador){ //<! Verifico que sea el operador que busco
+				result=actual;//<! Guardo el operador que es igual al buscado
+				// Porque no devuelvo este valor?
 
-			break;
+				break;
+			}
 		}
 	}
 	return result;
@@ -79,7 +85,8 @@ bool AgregarOperacion(calculadora_t calculadora, char operador, funcion_t funcio
 *
 **/
 int Calcular(calculadora_t calculadora, char * cadena){
-	int a,b;
+	int a;
+	int b;
 	char operador;
 	int result = 0;
 
