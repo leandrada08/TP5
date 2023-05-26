@@ -22,16 +22,11 @@ struct operacion_s {
 operacion_t BuscarOperacion(calculadora_t calculadora, char operador);
 
 
-/** Funcion verificada para hacer lo que necesitamos OK
- *
- *
- *
-**/
 operacion_t BuscarOperacion(calculadora_t calculadora, char operador){
 	operacion_t result = NULL; //<!Genero un puntero para devolver lo que necesito
 	operacion_t actual = calculadora->operaciones;
 	if(actual!=NULL){
-		for(actual;actual->siguiente!=NULL; actual=actual->siguiente){//<! Recorro los operador como lista enlazadas hasta encontrar un nulo
+		for(actual;actual!=NULL; actual=actual->siguiente){//<! Recorro los operador como lista enlazadas hasta encontrar un nulo
 			if(actual->operador==operador){ //<! Verifico que sea el operador que busco
 				result=actual;//<! Guardo el operador que es igual al buscado
 				break;
@@ -53,17 +48,13 @@ calculadora_t CrearCalculadora(void){ //Creo la calculadora de manera dinamica
 
 
 
-/** @brief Funcion para agregar operacion a la calculadora
-* @return 1 si operacion es distinto de 0 y 0 si es igual
-*
-**/
 bool AgregarOperacion(calculadora_t calculadora, char operador, funcion_t funcion){
-	operacion_t operacion = NULL;//<! En caso de que ya exista la operacion, lo creo como nulo al puntero
+	operacion_t operacion = malloc(sizeof(struct operacion_s)); 
 	if(!BuscarOperacion(calculadora, operador)){//<! Verifico si ya existe el operador
 		operacion_t operacion = malloc(sizeof(struct operacion_s));	//<! Creo una operacion, en el caso de no tener espacio devolvera NULL
 		// Como se que esta se crea dentro del espacio de alcenamiento de calculadora y no afuera
 	}
-	if(operacion){ //<! Verifico que el operador sea disntito de NULL
+	if ((operacion) && !BuscarOperacion(calculadora, operador)){ //<! Verifico que el operador sea disntito de NULL
 		operacion->operador = operador;
 		operacion->funcion = funcion;
 		operacion->siguiente=calculadora->operaciones;
@@ -72,13 +63,6 @@ bool AgregarOperacion(calculadora_t calculadora, char operador, funcion_t funcio
 	return (operacion != NULL);
 }
 
-
-/** @brief Funcion para calcular el valor de una determinada operacion
-*
-*
-*
-*
-**/
 int Calcular(calculadora_t calculadora, char * cadena){
 	int a;
 	int b;
