@@ -28,17 +28,12 @@ operacion_t BuscarOperacion(calculadora_t calculadora, char operador);
  *
 **/
 operacion_t BuscarOperacion(calculadora_t calculadora, char operador){
-
-	//Hacer codigo para evitar error cuando la calculadora esta vacia
-	
 	operacion_t result = NULL; //<!Genero un puntero para devolver lo que necesito
 	operacion_t actual = calculadora->operaciones;
 	if(actual!=NULL){
 		for(actual;actual->siguiente!=NULL; actual=actual->siguiente){//<! Recorro los operador como lista enlazadas hasta encontrar un nulo
 			if(actual->operador==operador){ //<! Verifico que sea el operador que busco
 				result=actual;//<! Guardo el operador que es igual al buscado
-				// Porque no devuelvo este valor?
-
 				break;
 			}
 		}
